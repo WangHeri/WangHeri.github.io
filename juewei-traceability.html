@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绝味鸭脖产品溯源查询</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background-color: #fff8e1;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ffd54f;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 25px 0;
+            background-color: #fffbf0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .step {
+            text-align: center;
+            width: 120px;
+            margin: 10px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #ffc107;
+            color: white;
+            border-radius: 50%;
+            line-height: 30px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .product-item {
+            background-color: #fffbf0;
+            border-radius: 8px;
+            padding: 15px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .product-item.signature {
+            border: 2px solid #ffd54f;
+        }
+        
+        .product-item.black-duck {
+            border: 2px solid #424242;
+        }
+        
+        .product-item.five-spice {
+            border: 2px solid #795548;
+        }
+        
+        .product-item.other {
+            border: 2px solid #78909c;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-item.signature:hover {
+            background-color: #fff3e0;
+        }
+        
+        .product-item.black-duck:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .product-item.five-spice:hover {
+            background-color: #efebe9;
+        }
+        
+        .product-item.other:hover {
+            background-color: #eceff1;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .product-note {
+            font-size: 12px;
+            color: #ff9800;
+        }
+        
+        .category {
+            font-weight: bold;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+            padding: 8px 15px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        
+        .category.signature {
+            background-color: #fff3e0;
+            color: #ff8f00;
+        }
+        
+        .category.black-duck {
+            background-color: #f5f5f5;
+            color: #424242;
+        }
+        
+        .category.five-spice {
+            background-color: #efebe9;
+            color: #6d4c41;
+        }
+        
+        .category.other {
+            background-color: #eceff1;
+            color: #546e7a;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .brand {
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .product-list {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+        
+        .link-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .link-info h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>产品溯源 安全放心</h1>
+            <div class="subtitle">扫码查生产日期、配料信息和相关报告</div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">选择产品</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">点击进入溯源码界面</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">查看产品信息</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">查看生产信息</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分类标题和产品列表将通过JavaScript动态生成 -->
+        <div id="categories-container"></div>
+        
+        <div class="footer">
+            <div class="brand">绝YIYABO</div>
+            <p>每个产品对应独立的溯源信息</p>
+            <p>© 2026 绝味鸭脖版权所有</p>
+        </div>
+    </div>
+    
+    <script>
+        // ============================================
+        // 产品链接配置区
+        // 请将下面的链接替换为您提取的实际二维码链接
+        // ============================================
+        const PRODUCT_LINKS = {
+            // 招牌系列
+            "招牌鸭脖": "这里替换为招牌鸭脖的链接",
+            "招牌鸭掌": "这里替换为招牌鸭掌的链接",
+            "招牌鸭锁骨": "这里替换为招牌鸭锁骨的链接",
+            "招牌鸭肠": "这里替换为招牌鸭肠的链接",
+            "招牌腐竹": "这里替换为招牌腐竹的链接",
+            "招牌鸡翅尖": "这里替换为招牌鸡翅尖的链接",
+            "招牌鸭心": "这里替换为招牌鸭心的链接",
+            "招牌鸭舌": "这里替换为招牌鸭舌的链接",
+            "招牌鸭食管": "这里替换为招牌鸭食管的链接",
+            "招牌虾球": "这里替换为招牌虾球的链接",
+            "招牌鱼豆腐": "这里替换为招牌鱼豆腐的链接",
+            "招牌海带结": "这里替换为招牌海带结的链接",
+            "招牌鸭肫": "这里替换为招牌鸭肫的链接",
+            "招牌毛豆": "这里替换为招牌毛豆的链接",
+            
+            // 黑鸭系列
+            "黑鸭鸭脖": "这里替换为黑鸭鸭脖的链接",
+            "黑鸭鸭掌": "这里替换为黑鸭鸭掌的链接",
+            "黑鸭鸭锁骨": "这里替换为黑鸭鸭锁骨的链接",
+            "黑鸭鸭头": "这里替换为黑鸭鸭头的链接",
+            "黑鸭鸭翅中": "这里替换为黑鸭鸭翅中的链接",
+            "黑鸭豆干": "这里替换为黑鸭豆干的链接",
+            
+            // 五香系列
+            "五香鸭脖": "这里替换为五香鸭脖的链接",
+            "五香鸭舌": "这里替换为五香鸭舌的链接",
+            "五香鸭掌": "这里替换为五香鸭掌的链接",
+            "五香鸭锁骨": "这里替换为五香鸭锁骨的链接",
+            
+            // 其他系列
+            "酸辣竹笋": "这里替换为酸辣竹笋的链接",
+            "酸辣藕片": "这里替换为酸辣藕片的链接",
+            "虎皮凤爪": "这里替换为虎皮凤爪的链接"
+        };
+        
+        // 根据产品名称自动分类
+        const categorizedProducts = {
+            "招牌系列": [],
+            "黑鸭系列": [],
+            "五香系列": [],
+            "其他": []
+        };
+
+        // 分类函数
+        function categorizeProduct(productName) {
+            if (productName.includes("招牌")) {
+                return "招牌系列";
+            } else if (productName.includes("黑鸭")) {
+                return "黑鸭系列";
+            } else if (productName.includes("五香")) {
+                return "五香系列";
+            } else {
+                return "其他";
+            }
+        }
+
+        // 构建产品数据
+        const products = [];
+        for (const [name, url] of Object.entries(PRODUCT_LINKS)) {
+            const category = categorizeProduct(name);
+            products.push({
+                name: name,
+                url: url,
+                category: category
+            });
+            categorizedProducts[category].push({
+                name: name,
+                url: url
+            });
+        }
+
+        // 类别显示顺序
+        const categoryOrder = ["招牌系列", "黑鸭系列", "五香系列", "其他"];
+        
+        // 类别样式映射
+        const categoryClassMap = {
+            "招牌系列": "signature",
+            "黑鸭系列": "black-duck",
+            "五香系列": "five-spice",
+            "其他": "other"
+        };
+        
+        const categoriesContainer = document.getElementById('categories-container');
+        
+        // 生成产品列表
+        categoryOrder.forEach(categoryName => {
+            const productsInCategory = categorizedProducts[categoryName];
+            
+            if (productsInCategory.length === 0) return;
+            
+            const categoryClass = categoryClassMap[categoryName];
+            
+            // 创建类别标题
+            const categoryTitle = document.createElement('div');
+            categoryTitle.className = `category ${categoryClass}`;
+            categoryTitle.textContent = `${categoryName} (${productsInCategory.length}个产品)`;
+            categoriesContainer.appendChild(categoryTitle);
+            
+            // 创建这个类别的产品列表容器
+            const productList = document.createElement('div');
+            productList.className = 'product-list';
+            
+            // 添加这个类别的所有产品
+            productsInCategory.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = `product-item ${categoryClass}`;
+                productItem.innerHTML = `
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-note">点击查看溯源信息</div>
+                `;
+                
+                productItem.addEventListener('click', function() {
+                    if (product.url && product.url !== "这里替换为..." && !product.url.includes("这里替换为")) {
+                        window.location.href = product.url;
+                    } else {
+                        alert("此产品链接尚未配置，请先配置产品链接。");
+                    }
+                });
+                
+                productList.appendChild(productItem);
+            });
+            
+            categoriesContainer.appendChild(productList);
+        });
+
+        // 页面加载完成后显示产品总数
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("产品溯源页面已加载");
+            console.log("产品总数：", products.length);
+            console.log("分类统计：", {
+                "招牌系列": categorizedProducts["招牌系列"].length,
+                "黑鸭系列": categorizedProducts["黑鸭系列"].length,
+                "五香系列": categorizedProducts["五香系列"].length,
+                "其他": categorizedProducts["其他"].length
+            });
+        });
+    </script>
+</body>
+</html>
