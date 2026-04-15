@@ -96,20 +96,21 @@
             transition: all 0.3s ease;
         }
         
+        /* 不同类别的边框颜色 */
         .product-item.signature {
-            border: 2px solid #ffd54f;
+            border: 2px solid #ffd54f; /* 招牌系列 - 黄色 */
         }
         
         .product-item.black-duck {
-            border: 2px solid #424242;
+            border: 2px solid #424242; /* 黑鸭系列 - 深灰色 */
         }
         
         .product-item.five-spice {
-            border: 2px solid #795548;
+            border: 2px solid #795548; /* 五香系列 - 棕色 */
         }
         
         .product-item.other {
-            border: 2px solid #78909c;
+            border: 2px solid #78909c; /* 其他 - 蓝灰色 */
         }
         
         .product-item:hover {
@@ -195,20 +196,6 @@
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
-        
-        .link-info {
-            background-color: #f8f9fa;
-            border-left: 4px solid #2196f3;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        
-        .link-info h3 {
-            margin-top: 0;
-            color: #1976d2;
-        }
     </style>
 </head>
 <body>
@@ -241,54 +228,44 @@
         <div id="categories-container"></div>
         
         <div class="footer">
-            <div class="brand">绝YIYABO</div>
+            <div class="brand">绝味鸭脖</div>
             <p>每个产品对应独立的溯源信息</p>
             <p>© 2026 绝味鸭脖版权所有</p>
         </div>
     </div>
     
     <script>
-        // ============================================
-        // 产品链接配置区
-        // 请将下面的链接替换为您提取的实际二维码链接
-        // ============================================
-        const PRODUCT_LINKS = {
-            // 招牌系列
-            "招牌鸭脖": https://zs.yishutec.com/01/552957150027,
-            "招牌鸭掌": "这里替换为招牌鸭掌的链接",
-            "招牌鸭锁骨": "这里替换为招牌鸭锁骨的链接",
-            "招牌鸭肠": "这里替换为招牌鸭肠的链接",
-            "招牌腐竹": "这里替换为招牌腐竹的链接",
-            "招牌鸡翅尖": "这里替换为招牌鸡翅尖的链接",
-            "招牌鸭心": "这里替换为招牌鸭心的链接",
-            "招牌鸭舌": "这里替换为招牌鸭舌的链接",
-            "招牌鸭食管": "这里替换为招牌鸭食管的链接",
-            "招牌虾球": "这里替换为招牌虾球的链接",
-            "招牌鱼豆腐": "这里替换为招牌鱼豆腐的链接",
-            "招牌海带结": "这里替换为招牌海带结的链接",
-            "招牌鸭肫": "这里替换为招牌鸭肫的链接",
-            "招牌毛豆": "这里替换为招牌毛豆的链接",
-            
-            // 黑鸭系列
-            "黑鸭鸭脖": "这里替换为黑鸭鸭脖的链接",
-            "黑鸭鸭掌": "这里替换为黑鸭鸭掌的链接",
-            "黑鸭鸭锁骨": "这里替换为黑鸭鸭锁骨的链接",
-            "黑鸭鸭头": "这里替换为黑鸭鸭头的链接",
-            "黑鸭鸭翅中": "这里替换为黑鸭鸭翅中的链接",
-            "黑鸭豆干": "这里替换为黑鸭豆干的链接",
-            
-            // 五香系列
-            "五香鸭脖": "这里替换为五香鸭脖的链接",
-            "五香鸭舌": "这里替换为五香鸭舌的链接",
-            "五香鸭掌": "这里替换为五香鸭掌的链接",
-            "五香鸭锁骨": "这里替换为五香鸭锁骨的链接",
-            
-            // 其他系列
-            "酸辣竹笋": "这里替换为酸辣竹笋的链接",
-            "酸辣藕片": "这里替换为酸辣藕片的链接",
-            "虎皮凤爪": "这里替换为虎皮凤爪的链接"
-        };
-        
+        // 产品数据 - 请将下面的链接替换为您提取的实际链接
+        const products = [
+            { name: "招牌鸭脖", url: "https://zs.yishutec.com/01/552957150027" },
+            { name: "招牌鸭掌", url: "https://zs.yishutec.com/01/5529571502X020" },
+            { name: "招牌鸭锁骨", url: "https://zs.yishutec.com/01/552957150012" },
+            { name: "招牌鸭肠", url: "这里替换为招牌鸭肠的链接" },
+            { name: "招牌腐竹", url: "这里替换为招牌腐竹的链接" },
+            { name: "招牌鸡翅尖", url: "这里替换为招牌鸡翅尖的链接" },
+            { name: "招牌鸭心", url: "这里替换为招牌鸭心的链接" },
+            { name: "招牌鸭舌", url: "这里替换为招牌鸭舌的链接" },
+            { name: "招牌鸭食管", url: "这里替换为招牌鸭食管的链接" },
+            { name: "招牌虾球", url: "这里替换为招牌虾球的链接" },
+            { name: "招牌鱼豆腐", url: "这里替换为招牌鱼豆腐的链接" },
+            { name: "酸辣竹笋", url: "这里替换为酸辣竹笋的链接" },
+            { name: "招牌海带结", url: "这里替换为招牌海带结的链接" },
+            { name: "招牌鸭肫", url: "这里替换为招牌鸭肫的链接" },
+            { name: "招牌毛豆", url: "这里替换为招牌毛豆的链接" }, 
+            { name: "黑鸭鸭脖", url: "这里替换为黑鸭鸭脖的链接" },
+            { name: "黑鸭鸭掌", url: "这里替换为黑鸭鸭掌的链接" },
+            { name: "黑鸭鸭锁骨", url: "这里替换为黑鸭鸭锁骨的链接" },
+            { name: "黑鸭鸭头", url: "这里替换为黑鸭鸭头的链接" },
+            { name: "黑鸭鸭翅中", url: "这里替换为黑鸭鸭翅中的链接" },
+            { name: "黑鸭豆干", url: "这里替换为黑鸭豆干的链接" },
+            { name: "五香鸭脖", url: "这里替换为五香鸭脖的链接" },
+            { name: "五香鸭舌", url: "这里替换为五香鸭舌的链接" },
+            { name: "五香鸭掌", url: "这里替换为五香鸭掌的链接" },
+            { name: "五香鸭锁骨", url: "这里替换为五香鸭锁骨的链接" },
+            { name: "酸辣藕片", url: "这里替换为酸辣藕片的链接" },
+            { name: "虎皮凤爪", url: "这里替换为虎皮凤爪的链接" }
+        ];
+
         // 根据产品名称自动分类
         const categorizedProducts = {
             "招牌系列": [],
@@ -298,32 +275,27 @@
         };
 
         // 分类函数
-        function categorizeProduct(productName) {
-            if (productName.includes("招牌")) {
+        function categorizeProduct(product) {
+            const name = product.name;
+            
+            if (name.includes("招牌")) {
                 return "招牌系列";
-            } else if (productName.includes("黑鸭")) {
+            } else if (name.includes("黑鸭")) {
                 return "黑鸭系列";
-            } else if (productName.includes("五香")) {
+            } else if (name.includes("五香")) {
                 return "五香系列";
             } else {
                 return "其他";
             }
         }
 
-        // 构建产品数据
-        const products = [];
-        for (const [name, url] of Object.entries(PRODUCT_LINKS)) {
-            const category = categorizeProduct(name);
-            products.push({
-                name: name,
-                url: url,
-                category: category
-            });
-            categorizedProducts[category].push({
-                name: name,
-                url: url
-            });
-        }
+        // 对产品进行分类
+        products.forEach(product => {
+            const category = categorizeProduct(product);
+            // 为产品添加类别属性
+            product.category = category;
+            categorizedProducts[category].push(product);
+        });
 
         // 类别显示顺序
         const categoryOrder = ["招牌系列", "黑鸭系列", "五香系列", "其他"];
@@ -349,7 +321,7 @@
             // 创建类别标题
             const categoryTitle = document.createElement('div');
             categoryTitle.className = `category ${categoryClass}`;
-            categoryTitle.textContent = `${categoryName} (${productsInCategory.length}个产品)`;
+            categoryTitle.textContent = categoryName;
             categoriesContainer.appendChild(categoryTitle);
             
             // 创建这个类别的产品列表容器
@@ -366,11 +338,7 @@
                 `;
                 
                 productItem.addEventListener('click', function() {
-                    if (product.url && product.url !== "这里替换为..." && !product.url.includes("这里替换为")) {
-                        window.location.href = product.url;
-                    } else {
-                        alert("此产品链接尚未配置，请先配置产品链接。");
-                    }
+                    window.location.href = product.url;
                 });
                 
                 productList.appendChild(productItem);
@@ -379,17 +347,9 @@
             categoriesContainer.appendChild(productList);
         });
 
-        // 页面加载完成后显示产品总数
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("产品溯源页面已加载");
-            console.log("产品总数：", products.length);
-            console.log("分类统计：", {
-                "招牌系列": categorizedProducts["招牌系列"].length,
-                "黑鸭系列": categorizedProducts["黑鸭系列"].length,
-                "五香系列": categorizedProducts["五香系列"].length,
-                "其他": categorizedProducts["其他"].length
-            });
-        });
+        // 控制台输出分类结果，方便调试
+        console.log("产品分类结果：", categorizedProducts);
+        console.log("产品总数：", products.length);
     </script>
 </body>
 </html>
